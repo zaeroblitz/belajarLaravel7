@@ -6,13 +6,13 @@
     <style>
         body {
             color: white;
-            background-color: slategray;
+            background-color: #424B54;
         }
     </style>
 @endsection
 
 @section('content')
     <div class="container">
-        This is Homepage
+        {{ $name }}
     </div>
 @endsection
