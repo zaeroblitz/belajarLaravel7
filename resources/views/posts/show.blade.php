@@ -1,9 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Post Title')
+@section('title', $post->title)
+
+@section('head')
+    <style>
+        body {
+            color: white;
+            background-color: #424B54;
+        }
+
+    </style>
+@endsection
 
 @section('content')
     <div class="container">
-        {{ $slugURL }}
+        <h1>{{ $post->title }}</h1>
+        <p>{{ $post->body }}</p>
     </div>
 @endsection
