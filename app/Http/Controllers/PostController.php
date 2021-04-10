@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-    public function show($slug)
+    public function show(Post $post)
     {
-        $post = Post::where('slug', $slug)->firstOrFail();
+        // $post = Post::where('slug', $slug)->firstOrFail();
         // dd($posts);
-        return view('posts.show', compact('slug', 'post'));
+        return view('posts.show', compact('post'));
     }
 }
