@@ -30,30 +30,49 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-10">
-                <h4>All Post</h4>
 
-                @foreach ($posts as $post)
+        <div class="d-flex justify-content-between">
+            <div>
+                <h4>All Post</h4>
+            </div>
+            <div>
+                <a href="/posts/create" class="btn btn-primary">New Post</a>
+            </div>
+        </div>
+        <div class="row">
+
+            @forelse ($posts as $post)
+                <div class="col-md-4">
                     <div class="card my-4">
                         <div class="card-header">
                             {{ $post->title }}
                         </div>
                         <div class="card-body">
-                            <div>{{ Str::limit($post->body, 200) }}</div>
+                            @if (strlen($post->body) < 200)
+                                <div>{{ $post->body, 200 }}</div>
+                            @else
+                                <div>{{ Str::limit($post->body, 200) }}</div>
 
-                            <a href="/posts/{{ $post->slug }}">Read More</a>
+                                <a href="/posts/{{ $post->slug }}">Read More</a>
+                            @endif
                         </div>
                         <div class="card-footer">
-                            Publised on {{ $post->created_at->format('d F, Y') }}, 
+                            Publised on {{ $post->created_at->format('d F, Y') }},
                             {{ $post->created_at->diffForHumans() }}
                         </div>
                     </div>
-                @endforeach
-                <div class="mt-4">
-
-                    {{ $posts->links() }}
                 </div>
+
+            @empty
+                <div class="col-md-6">
+                    <div class="alert alert-info">There's no posts</div>
+                </div>
+            @endforelse
+        </div>
+
+        <div class="mt-4 d-flex justify-content-center">
+            <div>
+                {{ $posts->links() }}
             </div>
         </div>
     </div>

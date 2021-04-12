@@ -9,6 +9,16 @@
             background-color: #424B54;
         }
 
+        button a {
+            color: white;
+            text-decoration:unset;
+        }
+
+        button a:hover {
+            color:white;
+            text-decoration:unset;
+        }
+
     </style>
 @endsection
 
@@ -17,6 +27,7 @@
         <h1>{{ $post->title }}</h1>
         <p>{{ $post->body }}</p>
 
-        <a href="/posts">Back to Post Index</a>
-    </div>
-@endsection
+        <button class="btn btn-primary">
+            <a href="/posts">Back to Post Index</a>
+        </button>
+    @endsection
