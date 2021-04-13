@@ -32,6 +32,10 @@ class PostController extends Controller
             'body' => 'required',
         ]);
 
+        // Session flash
+        session()->flash('success', 'The post was created');
+        // session()->flash('error', 'The post was not created');
+
         // Assign title to the slug
         $attr['slug'] = \Str::slug(request('title'));
 

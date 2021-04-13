@@ -14,6 +14,7 @@
     </head>
     <body>
         @include('layouts.nav')
-        <div class="py-4">@yield('content')</div>
+        @include('alert')
+        <div class="my-2">@yield('content')</div>
     </body>
 </html>
