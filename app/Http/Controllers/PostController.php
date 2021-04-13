@@ -9,7 +9,6 @@ class PostController extends Controller
 {
     public function index()
     {
-        // $posts = Post::orderBy('id')->paginate();
         $posts = Post::latest()->paginate(6);
         return view('posts.index', compact('posts'));
     }
@@ -34,7 +33,6 @@ class PostController extends Controller
 
         // Session flash
         session()->flash('success', 'The post was created');
-        // session()->flash('error', 'The post was not created');
 
         // Assign title to the slug
         $attr['slug'] = \Str::slug(request('title'));
@@ -42,6 +40,26 @@ class PostController extends Controller
         Post::create($attr);
 
         return redirect('/posts');
-        // return back();
+    }
+
+    public function edit(Post $post)
+    {
+        return view('posts.edit', compact('post'));
+    }
+
+    public function update(Post $post)
+    {
+        // Validate the field
+        $attr = request()->validate([
+            'title' => 'required|min:3',
+            'body' => 'required',
+        ]);
+
+        // Session flash
+        session()->flash('success', 'The post was updated');
+
+        $post->update($attr);
+
+        return redirect('/posts');
     }
 }
