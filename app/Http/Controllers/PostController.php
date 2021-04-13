@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -20,16 +21,13 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', ['post' => new Post()]);
     }
 
-    public function store()
+    public function store(PostRequest $postRequest)
     {
         // Validate the field
-        $attr = request()->validate([
-            'title' => 'required|min:3',
-            'body' => 'required',
-        ]);
+        $attr = $postRequest->all();
 
         // Session flash
         session()->flash('success', 'The post was created');
@@ -47,13 +45,11 @@ class PostController extends Controller
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Post $post)
+    public function update(PostRequest $postRequest, Post $post)
     {
         // Validate the field
-        $attr = request()->validate([
-            'title' => 'required|min:3',
-            'body' => 'required',
-        ]);
+        // Use method validateRequest() $attr = $this->validateRequest(); 
+        $attr = $postRequest->all();
 
         // Session flash
         session()->flash('success', 'The post was updated');
@@ -62,4 +58,12 @@ class PostController extends Controller
 
         return redirect('/posts');
     }
+
+    // public function validateRequest()
+    // {
+    //     return request()->validate([
+    //         'title' => 'required|min:3',
+    //         'body' => 'required',
+    //     ]);
+    // }
 }

@@ -53,10 +53,10 @@
                             @else
                                 <div>{{ Str::limit($post->body, 200) }}</div>
 
-                                <a href="/posts/{{ $post->slug }}">Read More</a>
+                                <a href="/posts/show/{{ $post->slug }}">Read More</a>
                             @endif
                         </div>
-                        <div class="card-footer d-flex justify-content-between">
+                        <div class="card-footer d-flex justify-content-between align-items-center">
                             <div>
                                 <div class="created-at">
                                     Publised on {{ $post->created_at->format('d F, Y') }}

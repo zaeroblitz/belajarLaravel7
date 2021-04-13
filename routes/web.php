@@ -6,6 +6,8 @@ Route::get('', 'HomeController');
 
 Route::get('/posts', 'PostController@index');
 
+Route::get('/posts/show/{post:slug}', 'PostController@show');
+
 Route::get('/posts/create', 'PostController@create');
 Route::post('/posts/store', 'PostController@store');
 

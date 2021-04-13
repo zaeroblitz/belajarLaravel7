@@ -15,7 +15,6 @@ class HomeController extends Controller
     public function __invoke()
     {
         $name = 'Zaero Blitz';
-        // $name = request('name');
         return view('home', compact('name'));
     }
 }
