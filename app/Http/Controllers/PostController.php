@@ -48,7 +48,6 @@ class PostController extends Controller
     public function update(PostRequest $postRequest, Post $post)
     {
         // Validate the field
-        // Use method validateRequest() $attr = $this->validateRequest(); 
         $attr = $postRequest->all();
 
         // Session flash
@@ -59,11 +58,14 @@ class PostController extends Controller
         return redirect('/posts');
     }
 
-    // public function validateRequest()
-    // {
-    //     return request()->validate([
-    //         'title' => 'required|min:3',
-    //         'body' => 'required',
-    //     ]);
-    // }
+    public function destroy(Post $post)
+    {
+        // Delete data
+        $post->delete();
+
+        // Session Flash
+        session()->flash('success', 'The post was destroyed');
+
+        return redirect('/posts');
+    }
 }

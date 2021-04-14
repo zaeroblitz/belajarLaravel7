@@ -22,7 +22,6 @@
 
         .card-footer {
             font-weight: 300;
-            color: lightslategray;
         }
 
     </style>
@@ -61,11 +60,58 @@
                                 <div class="created-at">
                                     Publised on {{ $post->created_at->format('d F, Y') }}
                                 </div>
-                                <div class="updated-at">
-                                    Edited on {{ $post->updated_at->diffForHumans() }}
+                                <div class="updated-at text-secondary">
+                                    <small>
+                                        Edited on {{ $post->updated_at->diffForHumans() }}
+                                    </small>
                                 </div>
                             </div>
-                            <a href="/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-success">Edit</a>
+                            <div>
+                                <a href="/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-success mb-2">Edit</a>
+
+                                <div>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        Del
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Anda yakin untuk mengahapusnya?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>
+                                                        <div>{{ $post->title }}</div>
+                                                        <div class="text-secondary">
+                                                            <small>
+                                                                Publised on {{ $post->created_at->format('d F, Y') }}
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <form action="/posts/{{ $post->slug }}/delete" method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-sm btn-danger mr-2">Hapus</button>
+
+                                                            <button type="button" class="btn btn-success btn-sm"
+                                                                data-dismiss="modal">Batal</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
