@@ -18,5 +18,7 @@ Route::delete('/posts/{post:slug}/delete', 'PostController@destroy');
 
 Route::get('/posts/{post:slug}', 'PostController@show');
 
+Route::get('/categories/{category:slug}', 'CategoryController@show');
+
 Route::view('/about', 'about');
 Route::view('/contact', 'contact');

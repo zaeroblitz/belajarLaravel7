@@ -32,7 +32,11 @@
 
         <div class="d-flex justify-content-between">
             <div>
-                <h4>All Post</h4>
+                @isset($category)
+                    <h4>Category : {{ $category->title }}</h4>
+                @else
+                    <h4>All Post</h4>
+                @endisset
             </div>
             <div>
                 <a href="/posts/create" class="btn btn-primary">New Post</a>
@@ -48,7 +52,8 @@
 
                             <div class="text-secondary">
                                 <small>
-                                    {{ $post->category->title }} &middot; {{ $post->created_at->format('d M, Y') }}
+                                    <a href="/categories/{{ $post->category->slug }}">{{ $post->category->title }}</a>
+                                    &middot; {{ $post->created_at->format('d M, Y') }}
                                 </small>
                             </div>
                         </div>
