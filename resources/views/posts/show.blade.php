@@ -27,7 +27,12 @@
         <h1>{{ $post->title }}</h1>
         <div class="text-white mt-2">
             <small>
-                <a href="/categories/{{ $post->category->slug }}">{{ $post->category->title }}</a> &middot; {{ $post->created_at->format('d F, Y') }}
+                <a href="/categories/{{ $post->category->slug }}">{{ $post->category->title }}</a>
+                &middot; {{ $post->created_at->format('d F, Y') }}
+                &middot;
+                @foreach ($post->tags as $tag)
+                    <a href="/tags/{{ $tag->slug }}">{{ $tag->name }}</a>
+                @endforeach
             </small>
             <hr>
         </div>
@@ -39,16 +44,14 @@
 
         <div>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" data-toggle="modal"
-                data-target="#exampleModal">
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                 Delete
             </button>
 
             <div></div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -73,8 +76,7 @@
                                     @method('delete')
                                     <button class="btn btn-sm btn-danger mr-2">Hapus</button>
 
-                                    <button type="button" class="btn btn-success btn-sm"
-                                        data-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Batal</button>
                                 </form>
                             </div>
                         </div>
