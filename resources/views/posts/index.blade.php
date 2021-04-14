@@ -45,6 +45,12 @@
                     <div class="card my-4">
                         <div class="card-header">
                             {{ $post->title }}
+
+                            <div class="text-secondary">
+                                <small>
+                                    {{ $post->category->title }} &middot; {{ $post->created_at->format('d M, Y') }}
+                                </small>
+                            </div>
                         </div>
                         <div class="card-body">
                             @if (strlen($post->body) < 200)
@@ -82,7 +88,8 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Anda yakin untuk mengahapusnya?</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Anda yakin untuk
+                                                        mengahapusnya?</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
