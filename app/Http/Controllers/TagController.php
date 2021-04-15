@@ -9,7 +9,7 @@ class TagController extends Controller
 {
     public function show(Tag $tag)
     {
-        $posts = $tag->posts()->paginate(6);
+        $posts = $tag->posts()->latest()->paginate(6);
         return view('posts.index', compact('posts', 'tag'));
     }
 }

@@ -3,7 +3,6 @@
 @section('head')
     <style>
         body {
-            color: white;
             background-color: #424B54;
         }
 
